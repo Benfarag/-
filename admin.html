@@ -1,0 +1,49 @@
+app.get('/admin', (req, res) => {
+    res.send(`
+        <!DOCTYPE html>
+        <html lang="ar" dir="rtl">
+        <head>
+            <meta charset="UTF-8">
+            <title>لوحة التحكم | بن فرج</title>
+            <style>
+                body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #eceee9; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+                .admin-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 400px; border-top: 5px solid #c5a059; }
+                h2 { color: #052c05; text-align: center; margin-bottom: 25px; }
+                .form-group { margin-bottom: 15px; }
+                label { display: block; margin-bottom: 5px; color: #333; font-weight: bold; }
+                input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+                button { width: 100%; padding: 12px; background-color: #052c05; color: #c5a059; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-size: 16px; transition: 0.3s; }
+                button:hover { background-color: #0a3d0a; transform: translateY(-2px); }
+                img {width: 250px; height: 250px;}
+            </style>
+        </head>
+        <body>
+            <div class="admin-card">
+                <h2>إضافة تلاوة جديدة</h2>
+                <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label>اسم الشيخ / السورة</label>
+                        <input type="text" name="title" placeholder="اسم الشيخ" required>
+                    </div>
+                    <div class="form-group">
+                        <label>القسم</label>
+                        <select name="type">
+                            <option value="quran">قرآن كريم</option>
+                            <option value="ebthal">ابتهالات</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>صورة الشيخ</label>
+                        <input type="file" name="image" accept="image/*" required>
+                    </div>
+                    <div class="form-group">
+                        <label>ملف الصوت (MP3)</label>
+                        <input type="file" name="audio" accept="audio/*" required>
+                    </div>
+                    <button type="submit">رفع الملفات للموسوعة</button>
+                </form>
+            </div>
+        </body>
+        </html>
+    `);
+});
